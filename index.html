@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+      body {
+    font-family: 'Poppins', sans-serif;
+    background-image: url('./Images/images_LE_upscale_balanced_x4.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #ffffff;
+}
+
+    
+        .container {
+            background: rgba(15, 13, 13, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            /* backdrop-filter: blur(10px); */
+        }
+    
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+    
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+    
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+    
+        input[type="text"]::placeholder, input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    
+        input[type="text"]:focus, input[type="password"]:focus {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #00c6ff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    
+        button:hover {
+            background: #0072ff;
+        }
+    
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+    
+        .forgot-password a {
+            color: #00c6ff;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+    
+        .forgot-password a:hover {
+            color: #0072ff;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const response = await fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            if (response.ok) {
+                // Redirect to the dashboard if login is successful
+                window.location.href = '/dashboard';
+            } else {
+                // Handle login failure (e.g., display an error message)
+                alert('Login failed. Please check your username and password.');
+            }
+        });
+    </script>
+</body>
+</html>
