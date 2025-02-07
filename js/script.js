@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const fetchAndDisplayStudents = () => {
-        fetch('http://localhost:2025/student')
+        fetch('https://backendsms-655.onrender.com/student')
             .then(response => {
                 if (!response.ok) throw new Error('Failed to fetch students');
                 return response.json();
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentId = confirmDeleteButton.getAttribute('data-id');
         const row = document.querySelector(`tr[data-student-id="${studentId}"]`);
 
-        fetch(`http://localhost:2025/student/${studentId}`, {
+        fetch(`https://backendsms-655.onrender.com/${studentId}`, {
             method: 'DELETE'
         })
         .then(response => {

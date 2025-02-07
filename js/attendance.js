@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedClass = classSelectAttendance.value;
         if (!selectedClass) return;
 
-        fetch(`http://localhost:2025/studentss/${selectedClass}`)
+        fetch(`https://backendsms-655.onrender.com/${selectedClass}`)
             .then(response => response.json())
             .then(students => {
                 studentTableBody.innerHTML = ""; // Clear previous data
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
 
-        fetch("http://localhost:2025/attendance", {
+        fetch("https://backendsms-655.onrender.com/attendance", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ attendanceData })
